@@ -1,0 +1,25 @@
+{
+  "name": "vaccinator",
+  "version": "1.0.0",
+  "description": "Vaccine Notifier",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bkrajendra/vaccinator.git"
+  },
+  "keywords": [
+    "Vaccine",
+    "notifier",
+    "covaxine",
+    "coviesheild"
+  ],
+  "author": "Rajendra & Anshul Khope",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bkrajendra/vaccinator/issues"
+  },
+  "homepage": "https://github.com/bkrajendra/vaccinator#readme"
+}
