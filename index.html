@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vaccinator 1.0.0</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link href="bootstrap/css/mdb.min.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-light navbar-fixed"
+      style="-webkit-app-region: drag; background-color: #08a5d4a2"
+    >
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand no-drag" href="#"
+          ><img width="30px" src="icons/android/mipmap-mdpi/ic_launcher.png" />
+          Vaccinator</a
+        >
+
+        <!-- Toggle button -->
+
+        <!-- Collapsible wrapper -->
+        <div
+          class="collapse navbar-collapse no-drag"
+          id="navbarSupportedContent"
+        >
+          <!-- Left links -->
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <!-- https://appicon.co/ -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+          <!-- Left links -->
+        </div>
+        <!-- Collapsible wrapper -->
+
+        <!-- Right elements -->
+        <ul class="navbar-nav flex-row no-drag">
+          <li class="nav-item dropdown me-3 me-lg-1">
+            <a
+              class="nav-link dropdown-toggle hidden-arrow"
+              href="#"
+              id="minimise"
+              role="button"
+              aria-expanded="false"
+            >
+              <i class="fas fa-chevron-circle-down fa-lg"></i>
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-1">
+            <a class="nav-link" id="maximize" href="#">
+              <span><i class="fas fa-window-maximize fa-lg"></i></span>
+            </a>
+          </li>
+          <li class="nav-item me-3 me-lg-1">
+            <a
+              class="nav-link"
+              id="close-btn"
+              onclick="window.close();"
+              href="#"
+            >
+              <span><i class="fas fa-times-circle fa-lg"></i></span>
+            </a>
+          </li>
+        </ul>
+        <!-- Right elements -->
+      </div>
+      <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <div class="container py-2">
+      <h1 style="text-align: center">VACCINATOR</h1>
+      <h3 style="text-align: center">
+        <span id="appVersion"></span>
+      </h3>
+      <div class="input-group">
+        <div class="form-outline">
+          <input
+            type="search"
+            id="pin"
+            name="pin"
+            class="form-control"
+            value="411014"
+          />
+          <label class="form-label" for="form1">PINCODE</label>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="getData();">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="list-group" id="centers"></div>
+    </div>
+  </body>
+
+  <script type="text/javascript" src="bootstrap/js/jquery.min.js"></script>
+  <!-- MDB -->
+  <script type="text/javascript" src="bootstrap/js/mdb.min.js"></script>
+
+  <script src="renderer.js"></script>
+</html>
