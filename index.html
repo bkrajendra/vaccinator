@@ -91,23 +91,95 @@
       <h3 style="text-align: center">
         <span id="appVersion"></span>
       </h3>
-      <div class="input-group">
-        <div class="form-outline">
-          <input
-            type="search"
-            id="pin"
-            name="pin"
-            class="form-control"
-            value="411014"
-          />
-          <label class="form-label" for="form1">PINCODE</label>
-        </div>
-        <button type="button" class="btn btn-primary" onclick="getData();">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
 
-      <div class="list-group" id="centers"></div>
+      <!-- Tabs navs -->
+      <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link active"
+            id="ex1-tab-1"
+            data-mdb-toggle="tab"
+            href="#ex1-tabs-1"
+            role="tab"
+            aria-controls="ex1-tabs-1"
+            aria-selected="true"
+            >By Pin Code</a
+          >
+        </li>
+        <li class="nav-item" role="presentation">
+          <a
+            class="nav-link"
+            id="ex1-tab-2"
+            data-mdb-toggle="tab"
+            href="#ex1-tabs-2"
+            role="tab"
+            aria-controls="ex1-tabs-2"
+            aria-selected="false"
+            >By District</a
+          >
+        </li>
+      </ul>
+      <!-- Tabs navs -->
+
+      <!-- Tabs content -->
+      <div class="tab-content" id="ex1-content">
+        <div
+          class="tab-pane fade show active"
+          id="ex1-tabs-1"
+          role="tabpanel"
+          aria-labelledby="ex1-tab-1"
+        >
+          <div class="input-group">
+            <div class="form-outline">
+              <input
+                type="search"
+                id="pin"
+                name="pin"
+                class="form-control"
+                value="411014"
+              />
+              <label class="form-label" for="form1">PINCODE</label>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="getData();">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <div class="list-group" id="centers"></div>
+        </div>
+        <div
+          class="tab-pane fade py-2"
+          id="ex1-tabs-2"
+          role="tabpanel"
+          aria-labelledby="ex1-tab-2"
+        >
+          <div class="row">
+            <div class="col">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="states"
+                onchange="getDistricts(this.value);"
+              >
+                <option selected>Select States</option>
+              </select>
+            </div>
+            <div class="col">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                id="districts"
+                onchange="getCenters(this.value);"
+              >
+                <option selected>Select Districts</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="list-group" id="centers1"></div>
+        </div>
+      </div>
+      <!-- Tabs content -->
     </div>
   </body>
 
