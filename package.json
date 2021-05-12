@@ -1,6 +1,7 @@
 {
   "name": "vaccinator",
-  "version": "1.0.0",
+  "productName": "Vaccinator",
+  "version": "1.0.4",
   "build": {
     "publish": [
       {
@@ -12,6 +13,9 @@
     "appId": "in.iocare.vaccinator",
     "mac": {
       "category": "in.iocare.vaccinator"
+    },
+    "win": {
+      "target": "nsis"
     }
   },
   "description": "Vaccine Notifier",
@@ -19,6 +23,7 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder build",
+    "packall": "electron-builder -wl",
     "publish": "electron-builder build --win -p always",
     "dist": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -33,7 +38,7 @@
     "covaxine",
     "coviesheild"
   ],
-  "author": "Rajendra & Anshul Khope",
+  "author": "RA",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/bkrajendra/vaccinator/issues"
