@@ -25,11 +25,24 @@ $("#maximize").on("click", (e) => {
 });
 getVersion();
 
+function showAbout() {
+  ipc.send("window-status", "about");
+}
 async function getVersion() {
   const ver = await ipc.invoke("get-version", "foo");
   $("#appVersion").html(ver);
 }
-
+async function setOptions() {
+  var state = await ipc.invoke("get-store", "state");
+  var district = await ipc.invoke("get-store", "district");
+  console.log(state);
+  if (state != "") {
+    $("#states select").val(state).trigger();
+  }
+  if (district != "") {
+    $("#districts select").val(district).trigger();
+  }
+}
 function getData() {
   var pin = $("#pin").val();
   $("#centers").html("");
@@ -84,10 +97,12 @@ function getStates() {
             `;
       $("#states").append(item_data);
     });
+    setOptions();
   });
 }
 function getDistricts() {
   var states = $("#states").val();
+  ipc.send("set-store", { key: "state", value: states });
   $("#districts").html("");
   $.ajax({
     url: "https://cdn-api.co-vin.in/api/v2/admin/location/districts/" + states,
@@ -159,7 +174,7 @@ async function getCenters() {
             "Vaccination Slot available at " +
             filter.length +
             " Centers in " +
-            dt,
+            district_text,
           title: "Vaccinator Slots",
           icon: "icon.png",
         });

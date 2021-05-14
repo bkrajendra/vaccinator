@@ -2,6 +2,7 @@
 
 var app = require("electron").app;
 var BrowserWindow = require("electron").BrowserWindow;
+const { Notification } = require("electron");
 
 const { Menu, Tray } = require("electron");
 var ipc = require("electron").ipcMain;
@@ -10,9 +11,31 @@ var ipc = require("electron").ipcMain;
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 const Store = require("electron-store");
+var CryptoJS = require("crypto-js");
+
 let store = null;
 let mainWindow = null;
 let tray = null;
+
+const gotTheLock = app.requestSingleInstanceLock();
+
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on("second-instance", (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    console.log("Already running...");
+
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore();
+      mainWindow.focus();
+    }
+    showNotification();
+  });
+
+  // Create myWindow, load the rest of the app, etc...
+  // app.on("ready", () => {});
+}
 
 ipc.handle("get-version", (event, arg) => {
   return app.getVersion();
@@ -27,6 +50,25 @@ ipc.on("set-store", (event, arg) => {
   store.set(arg.key, arg.value);
 });
 
+function showNotification() {
+  const notification = {
+    title: "Vaccinator",
+    body: "Vaccinator already running",
+    icon: "icon.png",
+  };
+  new Notification(notification).show();
+}
+
+function showAbout() {
+  app.setAboutPanelOptions({
+    applicationName: "About Vaccinator",
+    applicationVersion: app.getVersion(),
+    copyright: "RA",
+    authors: ["RA"],
+    iconPath: path.join(__dirname, "icon.png"),
+  });
+  app.showAboutPanel();
+}
 function createWindow() {
   autoUpdater.checkForUpdatesAndNotify();
 
@@ -101,6 +143,9 @@ app.whenReady().then(() => {
   });
   app.setAppUserModelId("in.iocare.vaccinator");
   store = new Store();
+  var hash = CryptoJS.SHA256("842737");
+  //var hex = hash.toString(SHA256.enc.Hex);
+  console.log(hash.toString());
 });
 
 app.setLoginItemSettings({
@@ -109,6 +154,12 @@ app.setLoginItemSettings({
 });
 
 ipc.on("window-status", (event, arg) => {
+  if (arg === "about") {
+    showAbout();
+  }
+  if (arg === "running") {
+    showNotification();
+  }
   if (arg === "show") {
     mainWindow.show();
   }

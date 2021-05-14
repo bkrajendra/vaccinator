@@ -1,7 +1,7 @@
 {
   "name": "vaccinator",
   "productName": "Vaccinator",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "build": {
     "publish": [
       {
@@ -49,6 +49,7 @@
     "electron-builder": "^22.11.1"
   },
   "dependencies": {
+    "crypto-js": "^4.0.0",
     "electron-store": "^8.0.0",
     "electron-updater": "^4.3.8",
     "jquery": "^3.6.0",
